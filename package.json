@@ -1,0 +1,17 @@
+{
+  "name": "nodecrawler",
+  "version": "1.0.0",
+  "description": "Crawler based on node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^1.2.1",
+    "kafka-node": "^5.0.0",
+    "moment": "^2.24.0",
+    "readline": "^1.3.0"
+  }
+}
