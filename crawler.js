@@ -11,7 +11,7 @@ var regex = new RegExp(domain)
 
 var c = new Crawler({
     //maxConnections : 10,
-    //rateLimit: 1000,
+    rateLimit: 1000,
     skipDuplicates : true,
     // This will be called for each crawled page
     callback : function (error, res, done) {
