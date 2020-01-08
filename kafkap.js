@@ -1,4 +1,5 @@
 const kafka = require('kafka-node');
+const kafkac = require('./kafkac.js');
 //const bp = require('body-parser');
 //const config = require('./config');
 

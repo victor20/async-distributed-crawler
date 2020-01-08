@@ -1,4 +1,6 @@
 var Crawler = require("crawler");
+var kafkac = require('./kafkac.js');
+
 const EventEmitter = require('events');
 const crawleremitter = new EventEmitter();
 module.exports = crawleremitter;
@@ -27,7 +29,7 @@ var c = new Crawler({
 
             $("a").each((i, el) => {
                 const link = $(el).attr('href')
-                console.log(link);
+                //console.log(link);
                 //Send link to kafka
                 //c.queue(link);
                 crawleremitter.emit('urlparsed', link);
@@ -41,6 +43,10 @@ var c = new Crawler({
         }
         done();
     }
+});
+
+kafkac.on('urlrecivedfromback', function(link) {
+    c.queue(link);
 });
 
 // Queue just one URL, with default callback
