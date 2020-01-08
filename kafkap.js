@@ -31,9 +31,9 @@ try {
 
             let push_status = producer.send(payloads, (err, data) => {
                 if (err) {
-                    console.log('[kafka-producer -> '+kafka_topic+']: broker update failed');
+                    //console.log('[kafka-producer -> '+kafka_topic+']: broker update failed');
                 } else {
-                    console.log('[kafka-producer -> '+kafka_topic+']: broker update success');
+                    //console.log('[kafka-producer -> '+kafka_topic+']: broker update success');
                 }
             });
         });

@@ -23,13 +23,14 @@ try {
         messageValue = message.value
         //console.log('here');
 
-
+        /*
         console.log(
             'kafka-> ',
             messageValue,
             'offset ' + message.offset,
             'partition ' + message.partition
         );
+        */
 
         kafkacemitter.emit('urlrecivedfromback', messageValue);
     })

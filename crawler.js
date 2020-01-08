@@ -1,45 +1,40 @@
 var Crawler = require("crawler");
 var kafkac = require('./kafkac.js');
 
+const domain = 'https://profilform.se';
+
 const EventEmitter = require('events');
 const crawleremitter = new EventEmitter();
 module.exports = crawleremitter;
+
+var regex = new RegExp(domain)
 
 var c = new Crawler({
     maxConnections : 10,
     skipDuplicates : true,
     // This will be called for each crawled page
     callback : function (error, res, done) {
-        if(error){
+        if(error) {
             console.log(error);
-        }else{
+        } else {
             var $ = res.$;
             //$.url
             // $ is Cheerio by default
             //a lean implementation of core jQuery designed specifically for the server
 
-            console.log($("title").text());
-            //console.log($.html());
-            //console.log($("div"));
-            //console.log($("link"));
-            //console.log($("a"));
-            //console.log($('a[href*="/test/"]').attr('href'));
-            //console.log($('a[href]').attr('href'));
-            //console.log($('a[href$=".se"]'));
+            //console.log($("title").text());
+            if(res.$) {
+                $("a").each((i, el) => {
+                    const link = $(el).attr('href')
+                    //Send link to kafka
+                    console.log(link);
+                    console.log(regex.test(link));
 
-            $("a").each((i, el) => {
-                const link = $(el).attr('href')
-                //console.log(link);
-                //Send link to kafka
-                //c.queue(link);
-                crawleremitter.emit('urlparsed', link);
-            });
-
-
-            //var links = $("a");
-            //console.log(links);
-
-
+                    if(regex.test(link)) {
+                        crawleremitter.emit('urlparsed', link);
+                    }
+                });
+            }
         }
         done();
     }
@@ -50,5 +45,5 @@ kafkac.on('urlrecivedfromback', function(link) {
 });
 
 // Queue just one URL, with default callback
-c.queue('http://www.profilform.se');
+c.queue(domain);
 
