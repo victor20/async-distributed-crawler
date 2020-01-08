@@ -1,7 +1,8 @@
 var Crawler = require("crawler");
 var kafkac = require('./kafkac.js');
 
-const domain = 'https://profilform.se';
+
+const domain = 'https://kontoro.se';
 
 const EventEmitter = require('events');
 const crawleremitter = new EventEmitter();
@@ -30,7 +31,7 @@ var c = new Crawler({
                 $("a").each((i, el) => {
                     const link = $(el).attr('href')
                     //Send link to kafka
-                    //console.log(link);
+                    console.log(link);
                     //console.log(regex.test(link));
 
                     if(regex.test(link)) {

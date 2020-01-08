@@ -20,7 +20,7 @@ try {
     //const client = new kafka.KafkaClient({kafkaHost: 'localhost:9092'});
     //var topics = [{ topic: 'url-upstream-two-topic', partition: 1 }];
 
-    var consumerGroup = new ConsumerGroup(options, 'url-upstream-one-topic');
+    var consumerGroup = new ConsumerGroup(options, 'url-upstream-zero-topic');
 
     consumerGroup.on('message', async function(message) {
         messageValue = message.value
