@@ -1,3 +1,8 @@
 nodejsCrawler.iml
 /node_modules
 .idea
+
+app.js
+kafkactest.js
+kafkactest2.js
+kafkatest.js
